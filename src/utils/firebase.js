@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCMg2yiREN9qLcKL7u6gwHsYQ-QBzKR0g4",
+  apiKey: "AIzaSyDhFuMP7aGBjUIfEO1KFsutCxPuyAGvh8M",
   authDomain: "geostrata-a6a62.firebaseapp.com",
   projectId: "geostrata-a6a62",
   storageBucket: "geostrata-a6a62.firebasestorage.app",
