@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCMg2yiREN9qLcK17u6gwWsY0-QBzKR0g4",
+  apiKey: "AIzaSyCMg2yiREN9qLcKL7u6gwHsYQ-QBzKR0g4",
   authDomain: "geostrata-a6a62.firebaseapp.com",
   projectId: "geostrata-a6a62",
   storageBucket: "geostrata-a6a62.firebasestorage.app",
-  messagingSenderId: "5759918453",
-  appId: "1:5759918453:web:068aeb1ff690d42eaca01c"
+  messagingSenderId: "57599186453",
+  appId: "1:57599186453:web:068aeb1ff690d42eaca01c"
 };
 
 let app;
