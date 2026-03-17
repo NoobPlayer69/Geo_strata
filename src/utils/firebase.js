@@ -20,7 +20,7 @@ try {
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({
-  client_id: '57599186453-20e8iqc241bp544abttau23pgad69hu5.apps.googleusercontent.com',
+  client_id: '490043682777-i9u1sisad66hkddlep7sd7ldn5d4kceq.apps.googleusercontent.com',
 });
 
 export const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
