@@ -2,14 +2,20 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || '',
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || '',
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || '',
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || '',
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '',
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || '',
+  apiKey: "AIzaSyCMg2yiREN9qLcK17u6gwWsY0-QBzKR0g4",
+  authDomain: "geostrata-a6a62.firebaseapp.com",
+  projectId: "geostrata-a6a62",
+  storageBucket: "geostrata-a6a62.firebasestorage.app",
+  messagingSenderId: "5759918453",
+  appId: "1:5759918453:web:068aeb1ff690d42eaca01c"
 };
 
-const app = initializeApp(firebaseConfig);
+let app;
+try {
+  app = initializeApp(firebaseConfig);
+} catch (error) {
+  throw new Error(`Firebase initialization failed: ${error.message}`);
+}
+
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
