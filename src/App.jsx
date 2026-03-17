@@ -1,39 +1,50 @@
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './utils/firebase';
+import Home from './components/Home';
+import GameMode from './components/GameMode';
+import ClassicMode from './components/ClassicMode';
+import ListMode from './components/ListMode';
+import Summary from './components/Summary';
+import Leaderboard from './components/Leaderboard';
+import Navbar from './components/Navbar';
+
 function App() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#F5F0E8] flex items-center justify-center">
+        <div className="text-4xl animate-pulse">🪨📍</div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-[#F5F0E8] flex flex-col items-center justify-center p-6">
-      <div className="text-center mb-8">
-        <div className="text-6xl mb-4">🪨📍</div>
-        <h1 className="text-5xl font-bold text-stone-800 mb-2">GeoStrata</h1>
-        <p className="text-stone-600 text-lg">Explore the world, layer by layer</p>
+    <Router>
+      <div className="min-h-screen bg-[#F5F0E8]">
+        <Navbar user={user} />
+        <Routes>
+          <Route path="/" element={<Home user={user} />} />
+          <Route path="/game-mode" element={<GameMode user={user} />} />
+          <Route path="/classic" element={<ClassicMode user={user} />} />
+          <Route path="/list" element={<ListMode user={user} />} />
+          <Route path="/summary" element={<Summary user={user} />} />
+          <Route path="/leaderboard" element={<Leaderboard user={user} />} />
+        </Routes>
       </div>
-
-      <div className="bg-white rounded-2xl shadow-md p-6 max-w-md w-full mb-6">
-        <p className="text-stone-700 text-center">
-          Test your knowledge of Earth's geology and geography. Identify rock
-          formations, mineral deposits, and geological features from around the
-          world!
-        </p>
-      </div>
-
-      <div className="flex flex-col gap-3 w-full max-w-md">
-        <button className="bg-stone-800 text-white py-3 px-6 rounded-xl text-lg font-semibold hover:bg-stone-700 transition-colors">
-          Sign in with Google
-        </button>
-        <button className="bg-amber-600 text-white py-3 px-6 rounded-xl text-lg font-semibold hover:bg-amber-500 transition-colors">
-          Play as Guest
-        </button>
-      </div>
-
-      <div className="mt-8">
-        <a
-          href="#leaderboard"
-          className="text-stone-600 underline hover:text-stone-800 transition-colors"
-        >
-          View Leaderboard
-        </a>
-      </div>
-    </div>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
