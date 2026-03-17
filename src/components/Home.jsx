@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signInWithPopup } from 'firebase/auth';
-import { auth, googleProvider } from '../utils/firebase';
+import { signInWithGoogle } from '../utils/firebase';
 
 function Home({ user }) {
   const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      await signInWithGoogle();
       navigate('/game-mode');
     } catch (error) {
       console.error('Sign in error:', error);

@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { auth } from '../utils/firebase';
+import { signOutUser } from '../utils/firebase';
 
 function Navbar({ user }) {
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth);
+      await signOutUser();
       navigate('/');
     } catch (error) {
       console.error('Sign out error:', error);
